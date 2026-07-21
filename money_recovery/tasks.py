@@ -4,9 +4,7 @@ import frappe
 from frappe.utils import nowdate, date_diff
 from frappe import _
 
-from money_recovery.money_recovery.doctype.collections_cadence_rule.collections_cadence_rule import (
-    get_applicable_rule,
-)
+from money_recovery.utils import get_applicable_rule
 from money_recovery.api import send_payment_reminder
 
 

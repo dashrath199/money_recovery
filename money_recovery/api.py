@@ -4,9 +4,7 @@ import frappe
 from frappe import _
 from frappe.utils import now_datetime, get_url
 
-from money_recovery.money_recovery.doctype.message_template.message_template import (
-    get_rendered_template,
-)
+from money_recovery.utils import get_rendered_template
 
 
 @frappe.whitelist()
