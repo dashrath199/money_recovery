@@ -1,0 +1,86 @@
+[
+ {
+  "doctype": "Custom Field",
+  "dt": "Dunning",
+  "module": "Money Recovery",
+  "fieldname": "sb_money_recovery",
+  "label": "Money Recovery",
+  "fieldtype": "Section Break",
+  "insert_after": "company"
+ },
+ {
+  "doctype": "Custom Field",
+  "dt": "Dunning",
+  "module": "Money Recovery",
+  "fieldname": "escalation_stage",
+  "label": "Escalation Stage",
+  "fieldtype": "Select",
+  "options": "\nReminder 1\nReminder 2\nFinal Notice\nLegal Referral",
+  "default": "Reminder 1",
+  "insert_after": "sb_money_recovery",
+  "reqd": 1,
+  "description": "Current stage in the collections escalation ladder"
+ },
+ {
+  "doctype": "Custom Field",
+  "dt": "Dunning",
+  "module": "Money Recovery",
+  "fieldname": "last_contact_channel",
+  "label": "Last Contact Channel",
+  "fieldtype": "Select",
+  "options": "\nWhatsApp\nSMS\nEmail\nCall",
+  "insert_after": "escalation_stage",
+  "description": "Channel used for the most recent contact attempt"
+ },
+ {
+  "doctype": "Custom Field",
+  "dt": "Dunning",
+  "module": "Money Recovery",
+  "fieldname": "cb_money_recovery_2",
+  "label": "",
+  "fieldtype": "Column Break",
+  "insert_after": "last_contact_channel"
+ },
+ {
+  "doctype": "Custom Field",
+  "dt": "Dunning",
+  "module": "Money Recovery",
+  "fieldname": "dispute_flag",
+  "label": "Dispute Flag",
+  "fieldtype": "Check",
+  "insert_after": "cb_money_recovery_2",
+  "description": "Check if the debtor has raised a dispute against this invoice"
+ },
+ {
+  "doctype": "Custom Field",
+  "dt": "Dunning",
+  "module": "Money Recovery",
+  "fieldname": "dispute_reason",
+  "label": "Dispute Reason",
+  "fieldtype": "Small Text",
+  "insert_after": "dispute_flag",
+  "depends_on": "eval:doc.dispute_flag == 1",
+  "description": "Reason for dispute as communicated by the debtor"
+ },
+ {
+  "doctype": "Custom Field",
+  "dt": "Dunning",
+  "module": "Money Recovery",
+  "fieldname": "promised_payment_date",
+  "label": "Promised Payment Date",
+  "fieldtype": "Date",
+  "insert_after": "dispute_reason",
+  "description": "Date the debtor promised to pay (captured during a call)"
+ },
+ {
+  "doctype": "Custom Field",
+  "dt": "Dunning",
+  "module": "Money Recovery",
+  "fieldname": "last_reminder_sent_on",
+  "label": "Last Reminder Sent On",
+  "fieldtype": "Datetime",
+  "insert_after": "promised_payment_date",
+  "read_only": 1,
+  "description": "Timestamp of the most recent automated reminder sent"
+ }
+]

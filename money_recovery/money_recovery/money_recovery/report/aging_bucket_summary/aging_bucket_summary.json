@@ -1,0 +1,17 @@
+{
+ "doctype": "Report",
+ "name": "Aging Bucket Summary",
+ "module": "Money Recovery",
+ "is_standard": "Yes",
+ "ref_doctype": "Sales Invoice",
+ "report_type": "Script Report",
+ "report_name": "Aging Bucket Summary",
+ "color": "#28a745",
+ "icon": "octicon octicon-graph",
+ "add_total_row": 1,
+ "roles": [
+  {"role": "System Manager"},
+  {"role": "Collections Manager"},
+  {"role": "Sales Rep"}
+ ]
+}

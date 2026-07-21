@@ -1,0 +1,2 @@
+recursive-include money_recovery *.py *.js *.css *.json *.html *.md *.txt *.svg *.png *.jpg *.gif
+recursive-include fixtures *.json

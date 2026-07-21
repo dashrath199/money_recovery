@@ -1,0 +1,98 @@
+{
+ "doctype": "DocType",
+ "name": "Message Template",
+ "module": "Money Recovery",
+ "custom": 0,
+ "autoname": "field:template_name",
+ "naming_series": null,
+ "fields": [
+  {
+   "fieldname": "template_name",
+   "label": "Template Name",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "channel",
+   "label": "Channel",
+   "fieldtype": "Select",
+   "reqd": 1,
+   "options": "\nWhatsApp\nSMS\nEmail"
+  },
+  {
+   "fieldname": "cb_language",
+   "label": "Language",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "language",
+   "label": "Language",
+   "fieldtype": "Select",
+   "reqd": 1,
+   "options": "\nen (English)\nhi (हिन्दी)\nta (தமிழ்)\nte (తెలుగు)\nkn (ಕನ್ನಡ)\nml (മലയാളം)\nmr (मराठी)\ngu (ગુજરાતી)\nbn (বাংলা)\nor (ଓଡ଼ିଆ)"
+  },
+  {
+   "fieldname": "is_default",
+   "label": "Is Default",
+   "fieldtype": "Check",
+   "description": "Use as fallback when requested language is not available"
+  },
+  {
+   "fieldname": "sb_subject",
+   "label": "Subject",
+   "fieldtype": "Section Break",
+   "depends_on": "eval:doc.channel=='Email'"
+  },
+  {
+   "fieldname": "subject",
+   "label": "Subject",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "sb_message",
+   "label": "Message Body",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "message_body",
+   "label": "Message Body",
+   "fieldtype": "Text Editor",
+   "reqd": 1,
+   "description": "Use Jinja placeholders: {{customer_name}}, {{invoice_number}}, {{outstanding_amount}}, {{due_date}}, {{days_overdue}}"
+  },
+  {
+   "fieldname": "sb_preview",
+   "label": "Preview",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "placeholder_help",
+   "label": "Placeholder Help",
+   "fieldtype": "HTML",
+   "options": "<table class='table table-bordered'><thead><tr><th>Placeholder</th><th>Description</th></tr></thead><tbody><tr><td><code>{{customer_name}}</code></td><td>Customer / Debtor name</td></tr><tr><td><code>{{invoice_number}}</code></td><td>Sales Invoice number</td></tr><tr><td><code>{{outstanding_amount}}</code></td><td>Amount due (with currency)</td></tr><tr><td><code>{{due_date}}</code></td><td>Invoice due date</td></tr><tr><td><code>{{days_overdue}}</code></td><td>Number of days past due</td></tr><tr><td><code>{{company_name}}</code></td><td>Your company name</td></tr></tbody></table>"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Collections Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "docstatus": 0
+}

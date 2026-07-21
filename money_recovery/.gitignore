@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Frappe / Bench
+sites/
+public/files/
+public/backups/
+logs/
+*.sqlite3
+
+# Environment
+.env
+.env.*
+
+# Node
+node_modules/
+
+# Git
+*.orig

@@ -1,0 +1,115 @@
+{
+ "doctype": "DocType",
+ "name": "Collections Cadence Rule",
+ "module": "Money Recovery",
+ "custom": 0,
+ "autoname": "field:rule_name",
+ "naming_series": null,
+ "fields": [
+  {
+   "fieldname": "rule_name",
+   "label": "Rule Name",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "sb_overdue_range",
+   "label": "Overdue Range (Days)",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "days_overdue_from",
+   "label": "Days Overdue From",
+   "fieldtype": "Int",
+   "reqd": 1,
+   "description": "Minimum days past due date"
+  },
+  {
+   "fieldname": "days_overdue_to",
+   "label": "Days Overdue To",
+   "fieldtype": "Int",
+   "reqd": 1,
+   "description": "Maximum days past due date"
+  },
+  {
+   "fieldname": "cb_action",
+   "label": "Action",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "action",
+   "label": "Action",
+   "fieldtype": "Select",
+   "reqd": 1,
+   "options": "\nSend WhatsApp Reminder\nSend SMS\nSend Email Reminder\nFlag for Manual Call\nEscalate to Legal"
+  },
+  {
+   "fieldname": "sb_message",
+   "label": "Message",
+   "fieldtype": "Section Break",
+   "depends_on": "eval:['Send WhatsApp Reminder','Send SMS','Send Email Reminder'].includes(doc.action)"
+  },
+  {
+   "fieldname": "message_template",
+   "label": "Message Template",
+   "fieldtype": "Link",
+   "options": "Message Template",
+   "depends_on": "eval:['Send WhatsApp Reminder','Send SMS','Send Email Reminder'].includes(doc.action)"
+  },
+  {
+   "fieldname": "cb_escalation",
+   "label": "Escalation",
+   "fieldtype": "Column Break",
+   "depends_on": "eval:doc.action=='Escalate to Legal'"
+  },
+  {
+   "fieldname": "escalate_after_days",
+   "label": "Escalate After (Days)",
+   "fieldtype": "Int",
+   "default": 90,
+   "depends_on": "eval:doc.action=='Escalate to Legal'",
+   "description": "Number of days overdue before flagging for legal referral"
+  },
+  {
+   "fieldname": "sb_advanced",
+   "label": "Advanced",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "is_active",
+   "label": "Is Active",
+   "fieldtype": "Check",
+   "default": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Collections Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0
+  },
+  {
+   "role": "Sales Rep",
+   "read": 1,
+   "write": 0,
+   "create": 0,
+   "delete": 0
+  }
+ ],
+ "sort_field": "days_overdue_from",
+ "sort_order": "ASC",
+ "track_changes": 1,
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "docstatus": 0
+}
