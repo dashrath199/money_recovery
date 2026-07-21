@@ -1,6 +1,7 @@
 [
  {
   "doctype": "Custom Field",
+  "name": "Dunning-sb_money_recovery",
   "dt": "Dunning",
   "module": "Money Recovery",
   "fieldname": "sb_money_recovery",
@@ -10,6 +11,7 @@
  },
  {
   "doctype": "Custom Field",
+  "name": "Dunning-escalation_stage",
   "dt": "Dunning",
   "module": "Money Recovery",
   "fieldname": "escalation_stage",
@@ -23,6 +25,7 @@
  },
  {
   "doctype": "Custom Field",
+  "name": "Dunning-last_contact_channel",
   "dt": "Dunning",
   "module": "Money Recovery",
   "fieldname": "last_contact_channel",
@@ -34,6 +37,7 @@
  },
  {
   "doctype": "Custom Field",
+  "name": "Dunning-cb_money_recovery_2",
   "dt": "Dunning",
   "module": "Money Recovery",
   "fieldname": "cb_money_recovery_2",
@@ -43,6 +47,7 @@
  },
  {
   "doctype": "Custom Field",
+  "name": "Dunning-dispute_flag",
   "dt": "Dunning",
   "module": "Money Recovery",
   "fieldname": "dispute_flag",
@@ -53,6 +58,7 @@
  },
  {
   "doctype": "Custom Field",
+  "name": "Dunning-dispute_reason",
   "dt": "Dunning",
   "module": "Money Recovery",
   "fieldname": "dispute_reason",
@@ -64,6 +70,7 @@
  },
  {
   "doctype": "Custom Field",
+  "name": "Dunning-promised_payment_date",
   "dt": "Dunning",
   "module": "Money Recovery",
   "fieldname": "promised_payment_date",
@@ -74,6 +81,7 @@
  },
  {
   "doctype": "Custom Field",
+  "name": "Dunning-last_reminder_sent_on",
   "dt": "Dunning",
   "module": "Money Recovery",
   "fieldname": "last_reminder_sent_on",
