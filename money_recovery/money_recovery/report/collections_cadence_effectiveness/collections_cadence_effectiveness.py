@@ -29,18 +29,11 @@ def get_data(filters):
         dunning_list = frappe.get_all(
             "Dunning",
             filters={"escalation_stage": stage},
-            fields=["name", "sales_invoice", "status"],
+            fields=["name", "status"],
         )
 
         total = len(dunning_list)
-        resolved = 0
-        for d in dunning_list:
-            invoice = frappe.get_value(
-                "Sales Invoice", d.sales_invoice, "outstanding_amount"
-            )
-            if invoice and invoice <= 0:
-                resolved += 1
-
+        resolved = len([d for d in dunning_list if d.status == "Resolved"])
         still_open = total - resolved
         resolution_rate = round((resolved / total * 100), 1) if total > 0 else 0
 
