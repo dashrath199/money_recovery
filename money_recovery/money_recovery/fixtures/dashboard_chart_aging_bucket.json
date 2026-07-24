@@ -1,0 +1,17 @@
+[
+ {
+  "doctype": "Dashboard Chart",
+  "chart_name": "Aging Bucket Summary",
+  "chart_type": "Report",
+  "report_name": "Aging Bucket Summary",
+  "type": "Bar",
+  "label": "Aging Bucket Summary",
+  "module": "Money Recovery",
+  "filters_json": "{}",
+  "group_by_type": "Count",
+  "number_of_groups": 0,
+  "is_public": 1,
+  "timeseries_based_on": "",
+  "timeseries_period": "Monthly"
+ }
+]

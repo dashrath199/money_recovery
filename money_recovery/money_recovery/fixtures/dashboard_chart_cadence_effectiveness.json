@@ -1,0 +1,17 @@
+[
+ {
+  "doctype": "Dashboard Chart",
+  "chart_name": "Collections Cadence Effectiveness",
+  "chart_type": "Report",
+  "report_name": "Collections Cadence Effectiveness",
+  "type": "Bar",
+  "label": "Collections Cadence Effectiveness",
+  "module": "Money Recovery",
+  "filters_json": "{}",
+  "group_by_type": "Count",
+  "number_of_groups": 0,
+  "is_public": 1,
+  "timeseries_based_on": "",
+  "timeseries_period": "Monthly"
+ }
+]
