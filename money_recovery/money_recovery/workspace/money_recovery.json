@@ -7,7 +7,7 @@
  "app": "money_recovery",
  "icon": "dollar",
  "icon_color": "green",
- "type": "Workspace",
+ "type": "Module Page",
  "is_hidden": 0,
  "is_standard": 1,
  "public": 1,
