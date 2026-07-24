@@ -6,12 +6,12 @@
  "title": "Receivables & Collections",
  "app": "money_recovery",
  "icon": "dollar",
- "icon_color": "green",
- "type": "Module Page",
+ "indicator_color": "green",
+ "type": "Workspace",
  "is_hidden": 0,
- "is_standard": 1,
+ "standard": 1,
  "public": 1,
-
+ "content": "[{\"id\":\"rec_ov_hdr1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Receivables Overview</b></span>\",\"col\":12}},{\"id\":\"rec_ov_nc01\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Overdue (₹)\",\"col\":4}},{\"id\":\"rec_ov_nc02\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"90+ Days Overdue (₹)\",\"col\":4}},{\"id\":\"rec_ov_nc03\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Open Dunning Records\",\"col\":4}},{\"id\":\"rec_ov_ch01\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Aging Bucket Summary\",\"col\":6}},{\"id\":\"rec_ov_ch02\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Collections Cadence Effectiveness\",\"col\":6}}]",
  "number_cards": [
   {
    "label": "Total Overdue (₹)",
@@ -60,38 +60,67 @@
    "doc_type": "Message Template"
   }
  ],
- "links": [
+ "sidebar_items": [
   {
-   "type": "Card Break",
-   "label": "Reports"
+   "type": "Link",
+   "label": "Reports",
+   "link_type": "DocType",
+   "child": 0,
+   "collapsible": 1,
+   "icon": "folder",
+   "indent": 1,
+   "keep_closed": 1
   },
   {
    "type": "Link",
    "label": "Aging Bucket Summary",
    "link_type": "Report",
    "link_to": "Aging Bucket Summary",
-   "dependencies": ""
+   "child": 1,
+   "collapsible": 0,
+   "icon": "",
+   "indent": 0,
+   "keep_closed": 0
   },
   {
    "type": "Link",
    "label": "Promise-to-Pay Reliability",
    "link_type": "Report",
    "link_to": "Promise-to-Pay Reliability",
-   "dependencies": ""
+   "child": 1,
+   "collapsible": 0,
+   "icon": "",
+   "indent": 0,
+   "keep_closed": 0
   },
   {
    "type": "Link",
    "label": "Collections Cadence Effectiveness",
    "link_type": "Report",
    "link_to": "Collections Cadence Effectiveness",
-   "dependencies": ""
+   "child": 1,
+   "collapsible": 0,
+   "icon": "",
+   "indent": 0,
+   "keep_closed": 0
   },
   {
    "type": "Link",
    "label": "Dispute Register",
    "link_type": "Report",
    "link_to": "Dispute Register",
-   "dependencies": ""
+   "child": 1,
+   "collapsible": 0,
+   "icon": "",
+   "indent": 0,
+   "keep_closed": 0
   }
- ]
+ ],
+ "links": [],
+ "custom_blocks": [],
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "for_user": "",
+ "hide_custom": 0
 }
