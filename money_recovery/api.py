@@ -1,8 +1,9 @@
 from __future__ import unicode_literals
 
 import frappe
+import requests
 from frappe import _
-from frappe.utils import now_datetime, get_url
+from frappe.utils import now_datetime
 
 from money_recovery.utils import get_rendered_template
 
@@ -110,42 +111,135 @@ def _get_customer_contact(customer, channel):
 
 
 def _send_whatsapp(recipient, recipient_contact, message, **kwargs):
-    """Send a WhatsApp message.
+    """Send a WhatsApp message via Gupshup.
 
-    Integration point for WhatsApp Business API.
-    Replace the placeholder with your actual provider (e.g. Gupshup, Twilio).
+    Expects the following in site config (site_config.json / common_site_config.json):
+        - gupshup_api_key: Gupshup API key
+        - whatsapp_source_number: Registered WhatsApp sender number
+          (with country code, e.g. "917834811114")
+
+    Args:
+        recipient (str): Customer name (for logging).
+        recipient_contact (str): Mobile number with country code.
+        message (str): Plain-text message body.
+
+    Returns:
+        dict: {"success": True} on success, {"success": False, "error": ...} on failure.
     """
     if not recipient_contact:
         return {"success": False, "error": _("No mobile number found for customer")}
 
-    # TODO: Replace with actual WhatsApp Business API call
-    # Example using Gupshup:
-    #   import requests
-    #   resp = requests.post(
-    #       "https://api.gupshup.io/sm/api/v1/msg",
-    #       headers={"apikey": frappe.conf.gupshup_api_key},
-    #       json={"channel": "whatsapp", "source": frappe.conf.whatsapp_source_number,
-    #             "destination": recipient_contact, "message": message},
-    #   )
-    frappe.logger().info(
-        f"[Money Recovery] WhatsApp reminder to {recipient_contact}: {message[:80]}..."
-    )
-    return {"success": True}
+    api_key = frappe.conf.gupshup_api_key
+    source = frappe.conf.whatsapp_source_number
+
+    if not api_key:
+        return {"success": False, "error": _("Gupshup API key not configured. Set gupshup_api_key in site config.")}
+    if not source:
+        return {"success": False, "error": _("WhatsApp source number not configured. Set whatsapp_source_number in site config.")}
+
+    try:
+        resp = requests.post(
+            "https://api.gupshup.io/sm/api/v1/msg",
+            headers={
+                "apikey": api_key,
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            data={
+                "channel": "whatsapp",
+                "source": source,
+                "destination": recipient_contact,
+                "message": message,
+            },
+            timeout=30,
+        )
+        resp.raise_for_status()
+        result = resp.json()
+        frappe.logger().info(
+            f"[Money Recovery] WhatsApp sent to {recipient_contact}: "
+            f"status={result.get('status')}, messageId={result.get('messageId')}"
+        )
+        return {"success": True, "provider_response": result}
+
+    except requests.exceptions.RequestException as e:
+        error_msg = f"Gupshup WhatsApp API error: {e}"
+        frappe.log_error(title=_("WhatsApp Send Failed"), message=error_msg)
+        return {"success": False, "error": error_msg}
+    except Exception as e:
+        error_msg = f"WhatsApp send error: {e}"
+        frappe.log_error(title=_("WhatsApp Send Failed"), message=error_msg)
+        return {"success": False, "error": error_msg}
 
 
 def _send_sms(recipient, recipient_contact, message, **kwargs):
-    """Send an SMS message.
+    """Send an SMS message via Gupshup Enterprise SMS Gateway.
 
-    Integration point for SMS gateways (MSG91, Twilio, etc.).
+    Expects the following in site config (site_config.json):
+        - gupshup_sms_userid: Gupshup Enterprise SMS User ID
+        - gupshup_sms_password: Gupshup Enterprise SMS Password
+        - sms_sender_id: Registered SMS Sender ID / Header (optional, used if
+          provided as part of your DLT registration)
+
+    Args:
+        recipient (str): Customer name (for logging).
+        recipient_contact (str): Mobile number with country code.
+        message (str): SMS text content.
+
+    Returns:
+        dict: {"success": True} on success, {"success": False, "error": ...} on failure.
     """
     if not recipient_contact:
         return {"success": False, "error": _("No mobile number found for customer")}
 
-    # TODO: Replace with actual SMS gateway call
-    frappe.logger().info(
-        f"[Money Recovery] SMS reminder to {recipient_contact}: {message[:80]}..."
-    )
-    return {"success": True}
+    userid = frappe.conf.gupshup_sms_userid
+    password = frappe.conf.gupshup_sms_password
+
+    if not userid or not password:
+        return {"success": False, "error": _(
+            "SMS credentials not configured. Set gupshup_sms_userid and "
+            "gupshup_sms_password in site config."
+        )}
+
+    try:
+        params = {
+            "userid": userid,
+            "password": password,
+            "send_to": recipient_contact,
+            "msg": message,
+            "method": "SendMessage",
+            "msg_type": "text",
+            "format": "text",
+            "auth_scheme": "plain",
+            "v": "1.1",
+        }
+        if frappe.conf.sms_sender_id:
+            params["mask"] = frappe.conf.sms_sender_id
+
+        resp = requests.get(
+            "https://enterprise.smsgupshup.com/GatewayAPI/rest",
+            params=params,
+            timeout=30,
+        )
+        resp.raise_for_status()
+        response_text = resp.text.strip()
+
+        if response_text.startswith("success"):
+            frappe.logger().info(
+                f"[Money Recovery] SMS sent to {recipient_contact}: {response_text}"
+            )
+            return {"success": True, "provider_response": response_text}
+        else:
+            error_msg = f"Gupshup SMS error: {response_text}"
+            frappe.log_error(title=_("SMS Send Failed"), message=error_msg)
+            return {"success": False, "error": error_msg}
+
+    except requests.exceptions.RequestException as e:
+        error_msg = f"Gupshup SMS API error: {e}"
+        frappe.log_error(title=_("SMS Send Failed"), message=error_msg)
+        return {"success": False, "error": error_msg}
+    except Exception as e:
+        error_msg = f"SMS send error: {e}"
+        frappe.log_error(title=_("SMS Send Failed"), message=error_msg)
+        return {"success": False, "error": error_msg}
 
 
 def _send_email(recipient, recipient_contact, message, subject=None, **kwargs):
