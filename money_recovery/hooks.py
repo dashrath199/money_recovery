@@ -13,9 +13,9 @@ app_license = "MIT"
 # Fixtures
 fixtures = [
     {"dt": "Custom Field", "filters": [["dt", "in", ["Dunning"]]]},
-    {"dt": "Workspace"},
     {"dt": "Number Card", "filters": [["module", "in", ["Money Recovery"]]]},
     {"dt": "Dashboard Chart", "filters": [["module", "in", ["Money Recovery"]]]},
+    {"dt": "Workspace"},
 ]
 
 # Scheduled Tasks

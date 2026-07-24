@@ -15,29 +15,24 @@
  "number_cards": [
   {
    "label": "Total Overdue (₹)",
-   "type": "Number Card",
    "number_card_name": "Total Overdue (₹)"
   },
   {
    "label": "90+ Days Overdue (₹)",
-   "type": "Number Card",
    "number_card_name": "90+ Days Overdue (₹)"
   },
   {
    "label": "Open Dunning Records",
-   "type": "Number Card",
    "number_card_name": "Open Dunning Records"
   }
  ],
  "charts": [
   {
    "label": "Aging Bucket Summary",
-   "type": "Chart",
    "chart_name": "Aging Bucket Summary"
   },
   {
    "label": "Collections Cadence Effectiveness",
-   "type": "Chart",
    "chart_name": "Collections Cadence Effectiveness"
   }
  ],
