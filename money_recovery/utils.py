@@ -55,3 +55,22 @@ def get_rendered_template(template_name, channel, language=None, context=None):
         return rendered
 
     return template
+
+
+@frappe.whitelist()
+def get_90_days_overdue():
+    """Return the sum of outstanding_amount for Sales Invoices overdue by 90+ days."""
+    from frappe.utils import add_days, nowdate
+    
+    ninety_days_ago = add_days(nowdate(), -90)
+    
+    result = frappe.db.get_value(
+        "Sales Invoice",
+        filters={
+            "docstatus": 1,
+            "outstanding_amount": [">", 0],
+            "due_date": ["<", ninety_days_ago],
+        },
+        fieldname="sum(outstanding_amount)",
+    )
+    return result or 0
