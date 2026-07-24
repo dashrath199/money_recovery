@@ -3,12 +3,12 @@
  "name": "Receivables & Collections",
  "module": "Money Recovery",
  "label": "Receivables & Collections",
- "app": "Money Recovery",
+ "app": "money_recovery",
  "icon": "dollar",
  "icon_color": "green",
  "type": "Workspace",
  "is_hidden": 0,
- "is_standard": "Yes",
+ "is_standard": 1,
  "charts": [
   {
    "label": "Aging Bucket Summary",
