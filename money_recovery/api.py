@@ -222,14 +222,24 @@ def _send_sms(recipient, recipient_contact, message, **kwargs):
         resp.raise_for_status()
         response_text = resp.text.strip()
 
-        if response_text.startswith("success"):
+        # Response format: "success | <number> | <id>" or "error | <code> | <message>"
+        tokens = [t.strip() for t in response_text.split("|")]
+        is_success = tokens[0].lower() == "success" if tokens else False
+
+        if is_success:
+            message_id = tokens[2] if len(tokens) > 2 else None
             frappe.logger().info(
-                f"[Money Recovery] SMS sent to {recipient_contact}: {response_text}"
+                f"[Money Recovery] SMS sent to {recipient_contact}: "
+                f"messageId={message_id}"
             )
             return {"success": True, "provider_response": response_text}
         else:
-            error_msg = f"Gupshup SMS error: {response_text}"
-            frappe.log_error(title=_("SMS Send Failed"), message=error_msg)
+            error_code = tokens[1] if len(tokens) > 1 else "unknown"
+            error_msg = tokens[2] if len(tokens) > 2 else response_text
+            frappe.log_error(
+                title=_("SMS Send Failed"),
+                message=f"Error {error_code}: {error_msg}",
+            )
             return {"success": False, "error": error_msg}
 
     except requests.exceptions.RequestException as e:
