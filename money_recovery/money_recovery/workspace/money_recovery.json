@@ -37,14 +37,36 @@
  ],
  "links": [
   {
-   "label": "Reports",
-   "type": "Report List",
-   "reports": [
-    "Aging Bucket Summary",
-    "Promise-to-Pay Reliability",
-    "Collections Cadence Effectiveness",
-    "Dispute Register"
-   ]
+   "type": "Card Break",
+   "label": "Reports"
+  },
+  {
+   "type": "Link",
+   "label": "Aging Bucket Summary",
+   "link_type": "Report",
+   "link_to": "Aging Bucket Summary",
+   "dependencies": ""
+  },
+  {
+   "type": "Link",
+   "label": "Promise-to-Pay Reliability",
+   "link_type": "Report",
+   "link_to": "Promise-to-Pay Reliability",
+   "dependencies": ""
+  },
+  {
+   "type": "Link",
+   "label": "Collections Cadence Effectiveness",
+   "link_type": "Report",
+   "link_to": "Collections Cadence Effectiveness",
+   "dependencies": ""
+  },
+  {
+   "type": "Link",
+   "label": "Dispute Register",
+   "link_type": "Report",
+   "link_to": "Dispute Register",
+   "dependencies": ""
   }
  ]
 }
