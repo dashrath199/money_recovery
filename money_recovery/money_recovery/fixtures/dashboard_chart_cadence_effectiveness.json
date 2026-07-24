@@ -12,6 +12,7 @@
   "group_by_type": "Count",
   "number_of_groups": 0,
   "is_public": 1,
+  "use_report_chart": 1,
   "timeseries_based_on": "",
   "timeseries_period": "Monthly"
  }
