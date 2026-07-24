@@ -7,7 +7,7 @@
   "aggregate_function_based_on": "outstanding_amount",
   "label": "Total Overdue (₹)",
   "module": "Money Recovery",
-  "filters_json": "{\"docstatus\": 1, \"outstanding_amount\": [\">\", 0]}",
+  "filters_json": "[[\"docstatus\",\"=\",\"1\"],[\"outstanding_amount\",\">\",\"0\"]]",
   "format": "Currency",
   "color": "#28a745",
   "show_percentage_stats": 1,

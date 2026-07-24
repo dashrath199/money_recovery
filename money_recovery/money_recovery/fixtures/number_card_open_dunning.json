@@ -7,7 +7,7 @@
   "aggregate_function_based_on": "name",
   "label": "Open Dunning Records",
   "module": "Money Recovery",
-  "filters_json": "{\"status\": \"Overdue\"}",
+  "filters_json": "[[\"status\",\"=\",\"Overdue\"]]",
   "format": "Number",
   "color": "#ffc107",
   "show_percentage_stats": 0
