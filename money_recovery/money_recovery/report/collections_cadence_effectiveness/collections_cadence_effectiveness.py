@@ -33,7 +33,7 @@ def get_data(filters):
         )
 
         total = len(dunning_list)
-        resolved = len([d for d in dunning_list if d.status == "Resolved"])
+        resolved = len([d for d in dunning_list if d.status != "Unresolved"])
         still_open = total - resolved
         resolution_rate = round((resolved / total * 100), 1) if total > 0 else 0
 

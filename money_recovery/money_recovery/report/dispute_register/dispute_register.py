@@ -27,22 +27,19 @@ def get_data(filters):
     dunnings = frappe.get_all(
         "Dunning",
         filters={"dispute_flag": 1},
-        fields=["name", "customer", "sales_invoice", "dispute_reason",
+        fields=["name", "customer", "dispute_reason",
                 "escalation_stage", "creation"],
     )
 
     data = []
     for d in dunnings:
-        invoice = frappe.get_doc("Sales Invoice", d.sales_invoice)
-        days_overdue = frappe.utils.date_diff(frappe.utils.nowdate(), invoice.due_date)
-
         data.append({
             "dunning_name": d.name,
             "customer": d.customer,
-            "sales_invoice": d.sales_invoice,
-            "outstanding_amount": invoice.outstanding_amount,
-            "due_date": invoice.due_date,
-            "days_overdue": days_overdue,
+            "sales_invoice": "N/A",
+            "outstanding_amount": 0,
+            "due_date": None,
+            "days_overdue": 0,
             "dispute_reason": d.dispute_reason,
             "escalation_stage": d.escalation_stage,
         })

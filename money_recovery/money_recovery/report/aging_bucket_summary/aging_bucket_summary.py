@@ -52,7 +52,7 @@ def get_data(filters):
         # Check if this invoice has a disputed Dunning record
         disputed = frappe.db.get_value(
             "Dunning",
-            {"sales_invoice": inv.name, "dispute_flag": 1},
+            {"dispute_flag": 1},
             "name",
         )
         if disputed:
