@@ -3,6 +3,7 @@
  "name": "Receivables & Collections",
  "module": "Money Recovery",
  "label": "Receivables & Collections",
+ "title": "Receivables & Collections",
  "app": "money_recovery",
  "icon": "dollar",
  "icon_color": "green",
