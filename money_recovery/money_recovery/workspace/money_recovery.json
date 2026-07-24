@@ -11,15 +11,11 @@
  "is_hidden": 0,
  "standard": 1,
  "public": 1,
- "content": "[{\"id\":\"rec_ov_hdr1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Receivables Overview</b></span>\",\"col\":12}},{\"id\":\"rec_ov_nc01\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Overdue (₹)\",\"col\":4}},{\"id\":\"rec_ov_nc02\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"90+ Days Overdue (₹)\",\"col\":4}},{\"id\":\"rec_ov_nc03\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Open Dunning Records\",\"col\":4}},{\"id\":\"rec_ov_ch01\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Aging Bucket Summary\",\"col\":6}},{\"id\":\"rec_ov_ch02\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Collections Cadence Effectiveness\",\"col\":6}}]",
+ "content": "[{\"id\":\"rec_ov_hdr1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Receivables Overview</b></span>\",\"col\":12}},{\"id\":\"rec_ov_nc01\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Overdue (₹)\",\"col\":4}},{\"id\":\"rec_ov_nc02\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Open Dunning Records\",\"col\":4}},{\"id\":\"rec_ov_ch01\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Aging Bucket Summary\",\"col\":6}},{\"id\":\"rec_ov_ch02\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Collections Cadence Effectiveness\",\"col\":6}}]",
  "number_cards": [
   {
    "label": "Total Overdue (₹)",
    "number_card_name": "Total Overdue (₹)"
-  },
-  {
-   "label": "90+ Days Overdue (₹)",
-   "number_card_name": "90+ Days Overdue (₹)"
   },
   {
    "label": "Open Dunning Records",
