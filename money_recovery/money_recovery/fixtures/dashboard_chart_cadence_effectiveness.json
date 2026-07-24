@@ -1,6 +1,7 @@
 [
  {
   "doctype": "Dashboard Chart",
+  "name": "Collections Cadence Effectiveness",
   "chart_name": "Collections Cadence Effectiveness",
   "chart_type": "Report",
   "report_name": "Collections Cadence Effectiveness",
