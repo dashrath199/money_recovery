@@ -14,24 +14,24 @@
  "shortcuts": [
   {
    "label": "Open Dunning Records",
-   "type": "DocType List",
+   "type": "DocType",
    "doc_type": "Dunning",
    "filters_json": "[[\"status\",\"=\",\"Overdue\"]]"
   },
   {
    "label": "Overdue Sales Invoices",
-   "type": "DocType List",
+   "type": "DocType",
    "doc_type": "Sales Invoice",
    "filters_json": "[[\"docstatus\",\"=\",\"1\"],[\"outstanding_amount\",\">\",\"0\"],[\"due_date\",\"<\",\"Today\"]]"
   },
   {
    "label": "Collections Cadence Rules",
-   "type": "DocType List",
+   "type": "DocType",
    "doc_type": "Collections Cadence Rule"
   },
   {
    "label": "Message Templates",
-   "type": "DocType List",
+   "type": "DocType",
    "doc_type": "Message Template"
   }
  ],
